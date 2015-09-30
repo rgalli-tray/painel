@@ -110,7 +110,7 @@
           <div class="row">
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Código 1</span>
-              <input type="text" name="codigo_1" value="<?php echo $linhaProduto['codigo_1'];?>" class="ls-mask-codigo" placeholder="Digite o código"required>
+              <input type="text" name="codigo_1" value="<?php echo $linhaProduto['codigo_1'];?>" disabled="disabled" class="ls-mask-codigo" placeholder="Digite o código"required>
             </label>
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Código 2</span>
@@ -139,10 +139,13 @@
               </label>
             </fieldset>
           </div>
-          <div class="row">
+          <div class="row ls-prefix-group">
             <label class="ls-label col-md-2">
-              <span class="ls-label-text">R$ Custo</span>
-              <input type="text" name="valor_custo" value="<?php echo $linhaProduto['valor_custo'];?>" class="ls-mask-money" placeholder="R$100,00" required>
+              <b class="ls-label-text">Preço Custo</b>
+              <div class="ls-prefix-group">
+                <span class="ls-label-text-prefix">R$</span>
+                <input type="text" name="valor_custo" value="<?php echo $linhaProduto['valor_custo'];?>" class="ls-mask-money" placeholder="R$100,00" required>
+              </div>
             </label>
             <!--<label class="ls-label col-md-2">
               <b class="ls-label-text">Tipo Acréssimo</b>
@@ -161,8 +164,11 @@
               </div>
             </label>-->
             <label class="ls-label col-md-2">
-              <span class="ls-label-text">R$ Venda</span>
-              <input type="text" name="valor_venda" value="<?php echo $linhaProduto['valor_venda'];?>" class="ls-mask-money" placeholder="R$100,00" required>
+              <b class="ls-label-text">Preço Venda</b>
+              <div class="ls-prefix-group">
+                <span class="ls-label-text-prefix">R$</span>
+                <input type="text" name="valor_venda" value="<?php echo $linhaProduto['valor_venda'];?>" class="ls-mask-money" required>
+              </div>
             </label>
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Estoque minimo</span>
@@ -235,7 +241,7 @@
                   <select class="ls-custom" name="situacao" required>
                     <option value="" selected="selected">Selecione</option>
                     <option value="1" <?php if ($linhaProduto['situacao'] == '1') { echo ' selected="selected"';}?>>Ativo</option>
-                    <option value="0" <?php if ($linhaProduto['situacao'] == '0') { echo ' selected="selected"';}?>>Inativo</option>
+                    <option value="0" <?php if ($linhaProduto['situacao'] == '0') { echo ' selected="selected"';}?>>Bloqueado</option>
                   </select>
                 </div>
               </label>

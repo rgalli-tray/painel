@@ -103,7 +103,7 @@
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-users">Cadastrar produto</h1>
         <form id="cad-produto" name="cad-produto" method="post" action="sql-insere-produto.php" class="ls-form-horizontal ls-form" data-ls-module="form">
-          <legend class="ls-title-2">Identificação Pessoal</legend>
+          <legend class="ls-title-2">Dados do produto</legend>
           <div class="row">
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Código 1</span>
@@ -138,8 +138,11 @@
           </div>
           <div class="row">
             <label class="ls-label col-md-2">
-              <span class="ls-label-text">R$ Custo</span>
-              <input type="text" name="valor_custo" class="ls-mask-money" placeholder="R$100,00" required>
+              <b class="ls-label-text">Preço Custo</b>
+              <div class="ls-prefix-group">
+                <span class="ls-label-text-prefix">R$</span>
+                <input type="text" name="valor_custo" class="ls-mask-money" placeholder="R$100,00" required>
+              </div>
             </label>
             <!--<label class="ls-label col-md-2">
               <b class="ls-label-text">Tipo Acréssimo</b>
@@ -158,8 +161,11 @@
               </div>
             </label>-->
             <label class="ls-label col-md-2">
-              <span class="ls-label-text">R$ Venda</span>
-              <input type="text" name="valor_venda" class="ls-mask-money" placeholder="R$100,00" required>
+              <b class="ls-label-text">Preço Venda</b>
+              <div class="ls-prefix-group">
+                <span class="ls-label-text-prefix">R$</span>
+                <input type="text" name="valor_venda" class="ls-mask-money" placeholder="R$100,00" required>
+              </div>
             </label>
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Estoque minimo</span>

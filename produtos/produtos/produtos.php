@@ -128,7 +128,7 @@
         <table class="ls-table">
           <thead>
             <tr>
-              <th>Nome do produto</th>
+              <th>Codigo</th>
               <th class="ls-txt-center hidden-xs">Nome Produto</th>
               <th class="ls-txt-center hidden-xs">Locacão</th>
               <th class="ls-txt-center hidden-xs">Preço</th>
@@ -144,18 +144,18 @@
             ?>
 
               <tr>
-                <td><?php echo $listagemProduto['codigo_1']; ?></td>
+                <td><?php echo $listagemProduto['codigo_1']; ?> / <?php echo $listagemProduto['codigo_2'];?></td>
                 <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['nome']; ?></td>
                 <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['locacao']; ?></td>
                 <td class="ls-txt-center hidden-xs"><?php echo 'R$ '.number_format($listagemProduto['valor_venda'],2, ',', '.'); ?></td>
                 
                 <td class="ls-txt-center hidden-xs"><?php if($listagemProduto['situacao'] == 1) {
-                                                          $status = 'Ativo';
-                                                        }else{
-                                                          $status = 'Bloqueado';
-                                                        } echo $status; ?></td>
+                                                            $status = 'Ativo';
+                                                          }else{
+                                                            $status = 'Bloqueado';
+                                                          } echo $status; ?></td>
                 <td class="ls-txt-right ls-regroup">
-                  <a href="detalhes-categoria.php?id=<?php echo $sqlListagemProduto['id']; ?>" class="ls-btn ls-btn-sm">Detalhes</a>
+                  <a href="detalhes-produto.php?id=<?php echo $listagemProduto['id']; ?>" class="ls-btn ls-btn-sm">Detalhes</a>
                   <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
                     <a href="#" class="ls-btn ls-btn-sm"></a>
                     <ul class="ls-dropdown-nav">
@@ -167,7 +167,7 @@
                 </td>
               </tr>   
             <?php
-            }
+              }
             ?>           
           </tbody>         
         </table>
