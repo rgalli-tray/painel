@@ -67,7 +67,7 @@
 
       <nav class="ls-menu" role="navigation">
         <ul>
-          <li><a href="../../../home.php" class="ls-ico-home">Página inicial</a></li>
+          <li><a href="../../home.php" class="ls-ico-home">Página inicial</a></li>
           <li><a href="../../vendas/vendas.php" class="ls-ico-chart-bar-up" role="menuitem">Vendas</a></li>
           <li><a href="../../produtos/produtos/produtos;php" class="ls-ico-text" role="menuitem">Produtos</a>
             <ul class"ls-submenu" role="menu">
@@ -187,7 +187,7 @@
                     $sqlListagemFornecedor    = mysql_query('SELECT * FROM fornecedores ORDER BY razao_social');
                     while($listagemFornecedor = mysql_fetch_array($sqlListagemFornecedor)) {
                   ?>                
-                  <option value="<?php echo $listagemFornecedor['id'];?>"><?php echo $listagemFornecedor['razao_social'];?></option>
+                  <option <?php if ($listagemFornecedor['id'] == $linhaProduto['fornecedor']) {echo 'selected="selected"';}?> value="<?php echo $listagemFornecedor['id'];?>"><?php echo $listagemFornecedor['razao_social'];?></option>
                   <?php
                     }
                   ?>
@@ -205,7 +205,7 @@
                     $sqlListagemMarca    = mysql_query('SELECT * FROM marcas ORDER BY nome');
                     while($listagemMarca = mysql_fetch_array($sqlListagemMarca)) {
                   ?>                
-                  <option value="<?php echo $listagemMarca['id'];?>"><?php echo $listagemMarca['nome'];?></option>
+                  <option <?php if ($listagemMarca['id'] == $linhaProduto['marca']) {echo 'selected="selected"';}?> value="<?php echo $listagemMarca['id'];?>"><?php echo $listagemMarca['nome'];?></option>
                   <?php
                     }
                   ?>
@@ -221,7 +221,7 @@
                     $sqlListagemTipo    = mysql_query('SELECT * FROM tipos ORDER BY nome');
                     while($listagemTipo = mysql_fetch_array($sqlListagemTipo)) {
                   ?>                
-                  <option value="<?php echo $listagemTipo['id'];?>"><?php echo $listagemTipo['nome'];?></option>
+                  <option <?php if ($listagemTipo['id'] == $linhaProduto['tipo']) {echo 'selected="selected"';}?>value="<?php echo $listagemTipo['id'];?>"><?php echo $listagemTipo['nome'];?></option>
                   <?php
                     }
                   ?>

@@ -95,37 +95,40 @@
       </nav>
     </aside>
 
+    <?php
+      $sqlListagemConfiguracao    = mysql_query('SELECT * FROM configuracoes');
+    ?>
+
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-cog">Aparência</h1>
+        <h1 class="ls-title-intro ls-ico-cog">Configurações</h1>
         <form id="cad-aparencia" name="cad-aparencia" method="post" action="inclui-aparencia.php" class="ls-form-horizontal ls-form row">
-          <legend class="ls-title-2">Configurações</legend>
-          <div class="row">
-            <label class="ls-label col-md-6">
-              <span class="ls-label-text">Nome</span>
-              <input type="text" name="nome" maxlength="20" placeholder="Digite um nome"required>
-            </label>
-          </div>
+          <legend class="ls-title-2">Apresentação</legend>
           <div class="row">
             <label class="ls-label col-md-6">
               <span class="ls-label-text">Nome exibição</span>
-              <input type="text" name="nome_exibicao" maxlength="20" placeholder="Digite o nome de exibição"required>
+              <input type="text" name="nome_exibicao" value="<?php echo $sqlListagemConfiguracao['nome_exibicao'];?>" maxlength="20" placeholder="Digite o nome de exibição"required>
             </label>
           </div>
+          <legend class="ls-title-2">Aparência</legend>
           <div class="row">
             <label class="ls-label col-md-3">
               <b class="ls-label-text">Tema</b>
               <div class="ls-custom-select">
                 <select class="ls-custom" name="tema" required>
-                  <option value="">Selecione</option> 
-                  <option value="ls-theme-blue">Tema Azul</option> 
-                  <option value="ls-theme-green">Tema Verde</option> 
-                  <option value="ls-theme-red">Tema Vermelho</option>
+                  <option value="" selected="selected">Selecione</option> 
+                  <?php
+                    $sqlListagemAparencia      = mysql_query('SELECT * FROM aparencia ORDER BY nome');
+                    while($listagemAparencia   = mysql_fetch_array($sqlListagemAparencia)) {
+                  ?>                
+                  <option value="<?php echo $listagemAparencia['id'];?>"<?php echo $listagemAparencia['nome'];?></option>
+                  <?php
+                    }
+                  ?>
                 </select>
               </div>
             </label>
           </div>
-          <hr>
           <button type="submit" class="ls-btn-primary">Salvar</button>
           <a href="../../home.php" class="ls-btn">Cancelar</a>
         </form>
