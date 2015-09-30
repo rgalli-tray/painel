@@ -42,7 +42,6 @@
     header("location:$redirect");
   } else {
     echo 'Ops!, houve um erro!';
-    echo 'id';
   }
 
 ?>
