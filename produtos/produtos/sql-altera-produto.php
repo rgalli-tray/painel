@@ -4,6 +4,7 @@
 ?>
 
 <?php
+  $codigo_1   = $_POST['codigo_1']; 
   $codigo_2     = $_POST['codigo_2']; 
   $ean          = $_POST['ean'];  
   $locacao      = $_POST['locacao'];  
@@ -19,7 +20,8 @@
   $tipo         = $_POST['tipo']; 
   $situacao     = $_POST['situacao']; 
 
-  $updateProduto = mysql_query('UPDATE produtos SET 
+  $updateProduto = mysql_query('UPDATE produtos SET
+    codigo_1     ="'.$codigo_1.'",  
     codigo_2     ="'.$codigo_2.'", 
     ean          ="'.$ean.'", 
     locacao      ="'.$locacao.'", 
@@ -42,7 +44,6 @@
     header("location:$redirect");
   } else {
     echo 'Ops!, houve um erro!';
-    echo 'id';
   }
 
 ?>

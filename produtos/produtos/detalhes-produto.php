@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html class="<?php if(!empty($classCorSite)){echo $classCorSite;} else {echo 'ls-theme-blue';}?>">
   <head>
-    <title>Detalhes Categoria</title>
+    <title>Detalhes Produto</title>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -70,7 +70,7 @@
         <ul>
           <li><a href="../../home.php" class="ls-ico-home">Página inicial</a></li>
           <li><a href="../vendas/vendas.php" class="ls-ico-chart-bar-up" role="menuitem">Vendas</a></li>
-          <li><a href="../produtos/produtos/produtos.php" class="ls-ico-text" role="menuitem">Produtos</a>
+          <li><a href="/produtos.php" class="ls-ico-text" role="menuitem">Produtos</a>
             <ul class"ls-submenu" role="menu">
               <li>
                 <a href="../categorias/categorias.php" class"ls-sub-menu-item" role="menuitem">Categorias</a>
@@ -99,14 +99,17 @@
 
     <main class="ls-main ">
     <div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-users">Detalhes Categoria</h1>
+      <h1 class="ls-title-intro ls-ico-users">Detalhes Produto</h1>
 
       <?php
-          $sqlCategoria = mysql_query('SELECT * FROM categorias WHERE id='.$_GET['id']);
-          $linhaCategoria = mysql_fetch_array($sqlCategoria);
-        ?>
+          $sqlProduto      = mysql_query('SELECT * FROM produtos WHERE id='.$_GET['id']);
+          $linhaProduto    = mysql_fetch_array($sqlProduto);
+          $sqlFornecedor   = mysql_query('SELECT * FROM fornecedores WHERE id='.$linhaProduto['fornecedor']'');
+          $sqlMarca        = mysql_query('SELECT * FROM marcas WHERE id='.$linhaProduto['marca']'');
+          $sqlTipo         = mysql_query('SELECT * FROM tipos WHERE id='.$linhaProduto['tipo']'');
+      ?>
 
-      <?php if($linhaCategoria['situacao'] == 1) {
+      <?php if($linhaProduto['situacao'] == 1) {
         $status = 'Ativo';
       }else{
         $status = 'Bloqueado';
@@ -118,37 +121,92 @@
           <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
             <a href="#" class="ls-btn"></a>
             <ul class="ls-dropdown-nav">
-              <li><a href="altera-categoria.php?id=<?php echo $linhaCategoria['id'];?>">Editar</a></li>
-              <li><a href="sql-altera-status-categoria.php?id=<?php echo $linhaCategoria['id'];?>">Ativar/Bloquear</a></li>
-              <li><a href="sql-deleta-categoria.php?id=<?php echo $linhaCategoria['id'];?>" class="ls-color-danger">Excluir</a></li>
+              <li><a href="altera-produto.php?id=<?php echo $linhaProduto['id'];?>">Editar</a></li>
+              <li><a href="sql-altera-status-categoria.php?id=<?php echo $linhaProduto['id'];?>">Ativar/Bloquear</a></li>
+              <li><a href="sql-deleta-categoria.php?id=<?php echo $linhaProduto['id'];?>" class="ls-color-danger">Excluir</a></li>
             </ul>
           </div>
         </div>
 
-        <form action="" class="ls-form row" data-ls-module="form">
+        <form id="" name="detalhes-produto" class="ls-form-horizontal ls-form" data-ls-module="form">
           <fieldset id="domain-form" class="ls-form-disable ls-form-text">
-            <label class="ls-label col-md-6 col-lg-8">
-              <b class="ls-label-text">Nome</b>
-              <input type="text" value="<?php echo $linhaCategoria['nome']; ?>" required>
-            </label>
-            <label class="ls-label col-md-6 col-lg-8">
-              <b class="ls-label-text">Descrição:</b>
-              <textarea name="" id="" cols="30" rows="5"><?php echo $linhaCategoria['descricao']; ?></textarea>
-            </label>
-            <label class="ls-label col-md-6 col-lg-8">
-              <b class="ls-label-text">Status:</b>
-              <input type="text" value="<?php echo $status?>" required>
-            </label>
-            <label class="ls-label col-md-6 col-lg-8">
-              <b class="ls-label-text">Data de cadastro:</b>
-              <input type="text" value="<?php echo converteDataNormal($linhaCategoria['data_cadastro']); ?>" required>
-            </label>
-          </fieldset>          
-        </form>
+            <div class="row">
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Código 1:</b>
+                <input type="text" value="<?php echo $linhaProduto['codigo_1']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Código 1:</b>
+                <input type="text" value="<?php echo $linhaProduto['codigo_2']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">EAN:</b>
+                <input type="text" value="<?php echo $linhaProduto['ean']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Locação:</b>
+                <input type="text" value="<?php echo $linhaProduto['locacao']; ?>">
+              </label>
+            </div>
+            <div class="row">
+              <label class="ls-label col-md-6">
+                <b class="ls-label-text">Nome:</b>
+                <input type="text" value="<?php echo $linhaProduto['nome']; ?>">
+              </label>
+            </div>
+            <div class="row">
+              <label class="ls-label col-md-6">
+                <b class="ls-label-text">Aplicação:</b>
+                <textarea name="" id="" cols="30" rows="5"><?php echo $linhaProduto['aplicacao']; ?></textarea>
+              </label>
+            </div>
+            <div class="row">
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Preço Custo:</b>
+                <input type="text" value="<?php echo $linhaProduto['valor_custo']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Preço Venda:</b>
+                <input type="text" value="<?php echo $linhaProduto['valor_venda']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Estoque Minimo:</b>
+                <input type="text" value="<?php echo $linhaProduto['estoque_min']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Estoque Maximo:</b>
+                <input type="text" value="<?php echo $linhaProduto['estoque_max']; ?>">
+              </label>
+            </div>
+            <div class="row">
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Estoque Atual:</b>
+                <input type="text" value="<?php echo $linhaProduto['estoque']; ?>">
+              </label>
+              <label class="ls-label col-md-4">
+                <b class="ls-label-text">Fornecedor:</b>                
+                <input type="text" value="<?php echo $linhaFornecedor['razao_social']; ?>">
+              </label>
+            </div>
+            <div class="row">
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Marca:</b>
+                <input type="text" value="<?php echo $linhaProduto['marca']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Tipo:</b>
+                <input type="text" value="<?php echo $linhaProduto['tipo']; ?>">
+              </label>
+              <label class="ls-label col-md-2">
+                <b class="ls-label-text">Status:</b>
+                <input type="text" value="<?php echo $status?>">
+              </label>
+            </div>
+          </fieldset>
+        </form>        
       </div>
 
       <div class="ls-box ls-board-box">
-
         <header class="ls-info-header">
           <h2 class="ls-title-3 col-md-6 ls-ico-calendar-check">
             Período atual
@@ -162,7 +220,6 @@
         </header>
 
         <div class="row">
-
           <div class="col-md-3 col-sm-6">
             <div class="ls-box">
               <strong class="ls-board-info">9 <small>milhões</small></strong>
@@ -170,48 +227,44 @@
               <a href="#" class="ls-btn-sm ls-btn">Comprar mais envios</a>
             </div>
           </div>
-
           <div class="col-md-3 col-sm-6">
             <div class="ls-box">
               <h6 class="ls-title-4">Avulso</h6>
               <strong class="ls-board-info">0</strong>
             </div>
           </div>
-
           <div class="col-md-3 col-sm-6">
             <div class="ls-box">
               <h6 class="ls-title-4">Distribuído</h6>
               <strong class="ls-board-info">0</strong>
             </div>
           </div>
-
           <div class="col-md-3 col-sm-6">
             <div class="ls-box">
               <h6 class="ls-title-4 color-default">Utilizados</h6>
               <strong class="ls-board-info">10.743</strong>
             </div>
           </div>
-
         </div>
+
       </div>
 
       <h2 class="ls-title-3">Histórico de compras </h2>
 
       <div class="ls-box-filter">
-          <form action="" class="ls-form ls-form-inline">
-            <label class="ls-label">
-              <b class="ls-label-text">Período</b>
-              <input type="text" name="cel2" class="datepicker">
-            </label>
-
-            <label class="ls-label">
-              <b class="ls-label-text">a</b>
-              <input type="text" name="cel2" class="datepicker">
-            </label>
-            <div class="ls-actions-btn">
-              <button type="button" class="ls-btn">Filtrar</button>
-            </div>
-          </form>
+        <form action="" class="ls-form ls-form-inline">
+          <label class="ls-label">
+            <b class="ls-label-text">Período</b>
+            <input type="text" name="cel2" class="datepicker">
+          </label>
+          <label class="ls-label">
+            <b class="ls-label-text">a</b>
+            <input type="text" name="cel2" class="datepicker">
+          </label>
+          <div class="ls-actions-btn">
+            <button type="button" class="ls-btn">Filtrar</button>
+          </div>
+        </form>
       </div>
 
       <table class="ls-table">
@@ -232,7 +285,6 @@
           </tr>          
         </tbody>
       </table>
-
 
       <!-- Modal de senha -->
       <div class="ls-modal" id="editPassword">
@@ -260,7 +312,6 @@
           </div>
         </form>
       </div>
-
 
       <!-- Modal Adicionar envios -->
       <div class="ls-modal" id="addMessage">
@@ -300,24 +351,18 @@
             </div>
             <div class="ls-modal-body">
               <p>Os envios serão removidos automaticamente após esta ação.</p>
-
               <label class="ls-label">
                 <b class="ls-label-text">Saldo disponível do cliente</b>
                 <input type="number" disabled="disabled" readonly="readonly" name="" value="8" >
               </label>
-
-
               <label class="ls-label">
                 <b class="ls-label-text">Disponível para remoção até 27/04/2014</b>
                 <input type="number" disabled="disabled" readonly="readonly" name="" value="8" >
               </label>
-
-
               <label class="ls-label">
                 <b class="ls-label-text">Quantidade de envios a remover</b>
                 <input type="number" name="" required>
               </label>
-
             </div>
             <div class="ls-modal-footer">
               <button type="submit" class="ls-btn-primary">Remover</button>
@@ -341,7 +386,6 @@
                 <b class="ls-label-text">Saldo disponível da sua revenda</b>
                 <input type="number" disabled="disabled" readonly="readonly" name="" value="889.239" >
               </label>
-
               <label class="ls-label">
                 <b class="ls-label-text">Quantidade de envios</b>
                 <input type="number" name="" value="10" >

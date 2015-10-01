@@ -103,14 +103,14 @@
     ?>
 
     <main class="ls-main ">
-      <div class="container-fluid">
+      
         <h1 class="ls-title-intro ls-ico-users">Alterar produto</h1>
-        <form id="cad-produto" name="cad-produto" method="post" action="sql-altera-produto.php" class="ls-form-horizontal ls-form" data-ls-module="form">
+        <form id="cad-produto" name="cad-produto" method="post" action="sql-altera-produto.php?id=<?php echo $_GET['id'];?>" class="ls-form-horizontal ls-form" data-ls-module="form">
           <legend class="ls-title-2">Identificação do Produto</legend>
           <div class="row">
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Código 1</span>
-              <input type="text" name="codigo_1" value="<?php echo $linhaProduto['codigo_1'];?>" disabled="disabled" class="ls-mask-codigo" placeholder="Digite o código"required>
+              <input type="text" name="codigo_1" value="<?php echo $linhaProduto['codigo_1'];?>" class="ls-mask-codigo" placeholder="Digite o código"required>
             </label>
             <label class="ls-label col-md-2">
               <span class="ls-label-text">Código 2</span>
@@ -251,7 +251,7 @@
           <button type="submit" class="ls-btn-primary">Salvar</button>
           <a href="produtos.php" class="ls-btn">Cancelar</a>
         </form>
-      </div>
+      
 
       <footer class="ls-footer" role="contentinfo">
         <div class="ls-footer-info">
