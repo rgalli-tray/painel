@@ -99,14 +99,17 @@
 
     <main class="ls-main ">
     <div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-users">Detalhes Produto</h1>
+      <h1 class="ls-title-intro ls-ico-list2">Detalhes Produto</h1>
 
       <?php
           $sqlProduto      = mysql_query('SELECT * FROM produtos WHERE id='.$_GET['id']);
           $linhaProduto    = mysql_fetch_array($sqlProduto);
-          $sqlFornecedor   = mysql_query('SELECT * FROM fornecedores WHERE id='.$linhaProduto['fornecedor']'');
-          $sqlMarca        = mysql_query('SELECT * FROM marcas WHERE id='.$linhaProduto['marca']'');
-          $sqlTipo         = mysql_query('SELECT * FROM tipos WHERE id='.$linhaProduto['tipo']'');
+          $sqlFornecedor   = mysql_query('SELECT * FROM fornecedores WHERE id='.$linhaProduto['fornecedor']);
+          $linhaFornecedor = mysql_fetch_array($sqlFornecedor);
+          $sqlMarca        = mysql_query('SELECT * FROM marcas WHERE id='.$linhaProduto['marca']);
+          $linhaMarca      = mysql_fetch_array($sqlMarca);
+          $sqlTipo         = mysql_query('SELECT * FROM tipos WHERE id='.$linhaProduto['tipo']);
+          $linhaTipo       = mysql_fetch_array($sqlTipo);
       ?>
 
       <?php if($linhaProduto['situacao'] == 1) {
@@ -122,8 +125,8 @@
             <a href="#" class="ls-btn"></a>
             <ul class="ls-dropdown-nav">
               <li><a href="altera-produto.php?id=<?php echo $linhaProduto['id'];?>">Editar</a></li>
-              <li><a href="sql-altera-status-categoria.php?id=<?php echo $linhaProduto['id'];?>">Ativar/Bloquear</a></li>
-              <li><a href="sql-deleta-categoria.php?id=<?php echo $linhaProduto['id'];?>" class="ls-color-danger">Excluir</a></li>
+              <li><a href="sql-altera-status-produto.php?id=<?php echo $linhaProduto['id'];?>">Ativar/Bloquear</a></li>
+              <li><a href="sql-deleta-ptoduto.php?id=<?php echo $linhaProduto['id'];?>" class="ls-color-danger">Excluir</a></li>
             </ul>
           </div>
         </div>
@@ -157,17 +160,17 @@
             <div class="row">
               <label class="ls-label col-md-6">
                 <b class="ls-label-text">Aplicação:</b>
-                <textarea name="" id="" cols="30" rows="5"><?php echo $linhaProduto['aplicacao']; ?></textarea>
+                <input type="text" value="<?php echo $linhaProduto['aplicacao']; ?>">
               </label>
             </div>
             <div class="row">
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Preço Custo:</b>
-                <input type="text" value="<?php echo $linhaProduto['valor_custo']; ?>">
+                <input type="text" value="<?php echo 'R$ '.number_format($linhaProduto['valor_custo'],2, ',', '.'); ?>">
               </label>
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Preço Venda:</b>
-                <input type="text" value="<?php echo $linhaProduto['valor_venda']; ?>">
+                <input type="text" value="<?php echo 'R$ '.number_format($linhaProduto['valor_venda'],2, ',', '.'); ?>">
               </label>
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Estoque Minimo:</b>
@@ -191,11 +194,11 @@
             <div class="row">
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Marca:</b>
-                <input type="text" value="<?php echo $linhaProduto['marca']; ?>">
+                <input type="text" value="<?php echo $linhaMarca['nome']; ?>">
               </label>
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Tipo:</b>
-                <input type="text" value="<?php echo $linhaProduto['tipo']; ?>">
+                <input type="text" value="<?php echo $linhaTipo['nome']; ?>">
               </label>
               <label class="ls-label col-md-2">
                 <b class="ls-label-text">Status:</b>

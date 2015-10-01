@@ -99,7 +99,7 @@
 
     <main class="ls-main ">
     <div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-users">Detalhes Categoria</h1>
+      <h1 class="ls-title-intro ls-ico-list2">Detalhes Categoria</h1>
 
       <?php
           $sqlCategoria = mysql_query('SELECT * FROM categorias WHERE id='.$_GET['id']);

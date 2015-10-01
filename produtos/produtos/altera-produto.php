@@ -104,7 +104,7 @@
 
     <main class="ls-main ">
       
-        <h1 class="ls-title-intro ls-ico-users">Alterar produto</h1>
+        <h1 class="ls-title-intro ls-ico-list2">Alterar produto</h1>
         <form id="cad-produto" name="cad-produto" method="post" action="sql-altera-produto.php?id=<?php echo $_GET['id'];?>" class="ls-form-horizontal ls-form" data-ls-module="form">
           <legend class="ls-title-2">Identificação do Produto</legend>
           <div class="row">

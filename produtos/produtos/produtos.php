@@ -68,7 +68,7 @@
     <nav class="ls-menu" role="navigation">
         <ul>
           <li><a href="../../home.php" class="ls-ico-home">Página inicial</a></li>
-          <li><a href="../vendas/vendas.php" class="ls-ico-chart-bar-up" role="menuitem">Vendas</a></li>
+          <li><a href="../../vendas/vendas.php" class="ls-ico-chart-bar-up" role="menuitem">Vendas</a></li>
           <li><a href="" class="ls-ico-text" role="menuitem">Produtos</a>
             <ul class"ls-submenu" role="menu">
               <li>
