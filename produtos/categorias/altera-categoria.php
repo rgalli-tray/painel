@@ -11,6 +11,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="Insira aqui a descrição da página.">
+    <link href="../../..font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../../stylesheets/locastyle.css" rel="stylesheet" type="text/css">
     <link rel="icon" sizes="192x192" href="../../../imagens/logo-rg.png">
   </head> 
