@@ -1,10 +1,7 @@
 <?php
-  session_start();
-  include 'conexao.php';
-?>
-
-<?php
-    include 'logar.php';
+    session_start();
+    include ('conexao.php');
+    include ('logar.php');
 ?>
 
 <!DOCTYPE html>

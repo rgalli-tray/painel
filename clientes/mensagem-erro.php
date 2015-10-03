@@ -1,0 +1,1 @@
+<div class="ls-alert-danger"><strong>Vish!</strong> Algo muito ruim aconteceu e você vai precisar refazer tudo.</div>
