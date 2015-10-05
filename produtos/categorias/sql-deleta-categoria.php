@@ -12,12 +12,9 @@
     $resultado = '';
 
     if ($sqlDeletaCategoria) {
-        $resultado = 'Marca excluida com sucesso!';
+        $redirect = 'index.php?pg=categorias';
+        header("location:$redirect");
     } else {
-        $resultado = 'Ops, houve um algum!';
+        echo 'Ops!, houve um erro!';
     }
-
-    $redirect = 'categorias.php';
-    header("location:$redirect");
-
 ?>

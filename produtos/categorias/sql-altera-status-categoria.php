@@ -17,7 +17,7 @@
   $updateCategoria = mysql_query('UPDATE categorias SET situacao="'.$situacao.'" WHERE id='.$_GET['id']);
 
   if ($updateCategoria) {
-    $redirect = 'categorias.php';
+    $redirect = 'index.php?pg=categorias';
     header("location:$redirect");
   }else{
     echo 'Ops!, houve um erro!';

@@ -1,0 +1,1 @@
+<div class="ls-alert-success ls-dismissable"><strong>Sucesso!</strong> Tipo cadastrado com sucesso!</div>

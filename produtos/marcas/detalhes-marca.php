@@ -1,19 +1,19 @@
 <?php
-  $sqlTipo     = mysql_query('SELECT * FROM tipos WHERE id='.$_GET['id']);
-  $linhaTipo   = mysql_fetch_array($sqlTipo);
-  $sqlStatus   = mysql_query('SELECT * FROM status WHERE id='.$linhaTipo['id_status']);
-  $linhaStatus = mysql_fetch_array($sqlStatus);
+  $sqlMarca      = mysql_query('SELECT * FROM marcas WHERE id='.$_GET['id']);
+  $linhaMarca    = mysql_fetch_array($sqlMarca);
+  $sqlStatus     = mysql_query('SELECT * FROM status WHERE id='.$linhaMarca['id_status']);
+  $linhaStatus   = mysql_fetch_array($sqlStatus);
 ?>
 
-<h1 class="ls-title-intro ls-ico-users">Detalhes Categoria</h1>
+<h1 class="ls-title-intro ls-ico-list2">Detalhes Marca</h1>
 <div class="ls-box">
   <div class="ls-float-right ls-regroup">
     <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
       <a href="#" class="ls-btn"></a>
       <ul class="ls-dropdown-nav">
-        <li><a href="index.php?pg=altera-tipo&id=<?php echo $linhaTipo['id'];?>">Editar</a></li>
-        <li><a href="sql-altera-status-tipo.php?id=<?php echo $linhaTipo['id'];?>">Ativar/Bloquear</a></li>
-        <li><a href="sql-deleta-tipo.php?id=<?php echo $linhaTipo['id'];?>" class="ls-color-danger">Excluir</a></li>
+        <li><a href="index.php?pg=altera-marca&id=<?php echo $linhaMarca['id'];?>">Editar</a></li>
+        <li><a href="sql-altera-status-marca.php?id=<?php echo $linhaMarca['id'];?>">Ativar/Bloquear</a></li>
+        <li><a href="sql-deleta-marca.php?id=<?php echo $linhaMarca['id'];?>" class="ls-color-danger">Excluir</a></li>
       </ul>
     </div>
   </div>
@@ -22,21 +22,21 @@
     <fieldset id="domain-form" class="ls-form-disable ls-form-text">
       <label class="ls-label col-md-6 col-lg-8">
         <b class="ls-label-text">Nome</b>
-        <input type="text" value="<?php echo $linhaTipo['nome']; ?>">
+        <input type="text" value="<?php echo $linhaMarca['nome']; ?>">
       </label>
       <label class="ls-label col-md-6 col-lg-8">
         <b class="ls-label-text">Descrição:</b>
-        <textarea name="" id="" cols="30" rows="5"><?php echo $linhaTipo['descricao']; ?></textarea>
+        <textarea name="" id="" cols="30" rows="5"><?php echo $linhaMarca['descricao']; ?></textarea>
       </label>
       <label class="ls-label col-md-6 col-lg-8">
         <b class="ls-label-text">Status:</b>
-        <input type="text" value="<?php echo $linhaStatus['status']; ?>">
+        <input type="text" value="<?php echo $linhaStatus['status'];?>">
       </label>
       <label class="ls-label col-md-6 col-lg-8">
         <b class="ls-label-text">Data de cadastro:</b>
-        <input type="text" value="<?php echo converteDataNormal($linhaTipo['data_cadastro']); ?>">
+        <input type="text" value="<?php echo converteDataNormal($linhaMarca['data_cadastro']); ?>">
       </label>
-    </fieldset>      
+    </fieldset>          
   </form>
 </div>
 

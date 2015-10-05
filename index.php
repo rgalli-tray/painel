@@ -1,17 +1,22 @@
 <?php
   include('sessao.php');
-  include('config.php');
   include('funcao.php');
 ?>
 
+<?php
+  $sqlConfiguracoes    = mysql_query('SELECT * FROM configuracoes WHERE id=1');
+  $linhaConfiguracoes  = mysql_fetch_array($sqlConfiguracoes);
+  $sqlAparencia        = mysql_query('SELECT * FROM aparencia WHERE id='.$linhaConfiguracoes['id_tema']);
+  $linhaAparencia      = mysql_fetch_array($sqlAparencia);
+?>
+
 <!DOCTYPE html>
-<html class="<?php if(!empty($classCorSite)){echo $classCorSite;} else {echo 'ls-theme-blue';}?>">
+<html class="<?php echo $linhaAparencia['tema']; ?>">
   <head>
     <title>Página inicial</title>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="Insira aqui a descrição da página.">
     <link href="../stylesheets/locastyle.css" rel="stylesheet" type="text/css">
     <link rel="icon" sizes="192x192" href="../imagens/logo-rg.png">
   </head>
@@ -34,7 +39,7 @@
         <!-- User details -->
         <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
           <a href="#" class="ls-ico-user">
-            Olá, <?php echo $secao_usuario; ?>
+            Olá, <?php echo $login; ?>
           </a>
           <nav class="ls-dropdown-nav ls-user-menu">
             <ul>
@@ -45,7 +50,7 @@
         </div>
       </div>
       <!-- Nome da empresa -->
-      <h1 class="ls-brand-name"><a class="ls-ico-earth"><?php if(!empty($nomeEmpresa)){echo $nomeEmpresa;} else {echo 'RG - Sistemas';}?></a></h1>
+      <h1 class="ls-brand-name"><a class="ls-ico-earth"><?php echo $linhaConfiguracoes['nome_exibicao']; ?></a></h1>
     </div>
 
     <aside class="ls-sidebar">
@@ -62,9 +67,9 @@
 
       <nav class="ls-menu" role="navigation">
         <ul>
-          <li><a href="index.php" class="ls-ico-home">Página inicial</a></li>
-          <li><a href="index.php?pg=vendas" class="ls-ico-chart-bar-up" role="menuitem">Vendas</a></li>
-          <li><a href="" class="ls-ico-text" role="menuitem">Produtos</a>
+          <li><a href="index.php" class="ls-ico-home" title="Página inicial">Página inicial</a></li>
+          <li><a href="index.php?pg=vendas" class="ls-ico-cart" title="Vendas">Vendas</a></li>
+          <li><a href="" class="ls-ico-text" role="menuitem" title="Produtos">Produtos</a>
             <ul class"ls-submenu" role="menu">
               <li>
                 <a href="index.php?pg=categorias" class"ls-sub-menu-item" role="menuitem">Categorias</a>
@@ -75,18 +80,20 @@
               </li>
             </ul>
           </li>
-          <li><a href="index.php?pg=clientes" class="ls-ico-users">Clientes</a></li>
-          <li><a href="index.php?pg=relatorios" class="ls-ico-bars">Relatórios</a></li>
-          <li><a href="" class="ls-ico-cog" role="menuitem">Configurações</a>
+          <li><a href="index.php?pg=clientes" class="ls-ico-users" title="Clientes">Clientes</a></li>
+          <li><a href="index.php?pg=relatorios" class="ls-ico-docs" title="Relatórios">Relatórios</a></li>
+          <li><a href="" class="ls-ico-cog" role="menuitem" title="Configurações">Configurações</a>
             <ul class"ls-submenu" role="menu">
               <li>
-                <a href="index.php?pg=produtos" class"ls-sub-menu-item" role="menuitem">Aparência</a>
-                <a href="index.php?pg=empresa?id=1" class"ls-sub-menu-item" role="menuitem">Dados Empresa</a>
+                <a href="index.php?pg=aparencia" class"ls-sub-menu-item" role="menuitem">Aparência</a>
+                <a href="index.php?pg=dados-empresa&id=1" class"ls-sub-menu-item" role="menuitem">Dados Empresa</a>
                 <a href="index.php?pg=usuarios" class"ls-sub-menu-item" role="menuitem">Usuários</a>
                 <a href="index.php?pg=notificacoes" class"ls-sub-menu-item" role="menuitem">Notificação</a>
               </li>
             </ul>
           </li>
+          <li><a href="index.php?pg=compras" class="ls-ico-download2" title="Compras">Compras</a></li>
+          <li><a href="index.php?pg=caixa" class="glyphicon-usd" title="Caixa">Caixa</a></li>
         </ul>
       </nav>
     </aside>
@@ -94,31 +101,70 @@
     <main class="ls-main">
       <div class="container-fluid">
         <?php 
-          if($_GET['pg']){
+          if (!empty($_GET['pg'])) {
             /*Menu Vendas*/
               if ($_GET['pg']=='vendas'){
                 include_once('vendas/vendas.php');
               }
+               if ($_GET['pg']=='nova-venda'){
+                include_once('vendas/nova-venda.php');
+              }
 ###################################################################################################################              
             /*Menu Produtos*/
-              /*Sub Menu Produtos*/
+              /*Sub Menu Categorias*/
                 if ($_GET['pg']=='categorias'){
                   include_once('produtos/categorias/categorias.php');
                 }
+                if ($_GET['pg']=='nova-categoria'){
+                  include_once('produtos/categorias/nova-categoria.php');
+                }
+                if ($_GET['pg']=='altera-categoria'){
+                  include_once('produtos/categorias/altera-categoria.php');
+                }
+                if ($_GET['pg']=='detalhes-categoria'){
+                  include_once('produtos/categorias/detalhes-categoria.php');
+                }
               #####################################################################################################
-              /*Sub Menu Produtos*/
+              /*Sub Menu Tipos*/
                 if ($_GET['pg']=='tipos'){
                   include_once('produtos/tipos/tipos.php');
                 }
+                if ($_GET['pg']=='novo-tipo'){
+                  include_once('produtos/tipos/novo-tipo.php');
+                }
+                if ($_GET['pg']=='altera-tipo'){
+                  include_once('produtos/tipos/altera-tipo.php');
+                }
+                if ($_GET['pg']=='detalhes-tipo'){
+                  include_once('produtos/tipos/detalhes-tipo.php');
+                }
               #####################################################################################################          
-              /*Sub Menu Produtos*/
+              /*Sub Menu Marcas*/
                 if ($_GET['pg']=='marcas'){
                   include_once('produtos/marcas/marcas.php');
                 }
+                if ($_GET['pg']=='nova-marca'){
+                  include_once('produtos/marcas/nova-marca.php');
+                }
+                if ($_GET['pg']=='altera-marca'){
+                  include_once('produtos/marcas/altera-marca.php');
+                }
+                if ($_GET['pg']=='detalhes-marca'){
+                  include_once('produtos/marcas/detalhes-marca.php');
+                }
               #####################################################################################################                
-              /*Sub Menu Produtos*/
+              /*Sub Menu Fornecedores*/
                 if ($_GET['pg']=='fornecedores'){
                   include_once('produtos/fornecedores/fornecedores.php');
+                }
+                if ($_GET['pg']=='novo-fornecedor'){
+                  include_once('produtos/fornecedores/novo-fornecedor.php');
+                }
+                if ($_GET['pg']=='altera-fornecedor'){
+                  include_once('produtos/fornecedores/altera-fornecedor.php');
+                }
+                if ($_GET['pg']=='detalhes-fornecedor'){
+                  include_once('produtos/fornecedores/detalhes-fornecedor.php');
                 }
               #####################################################################################################                
               /*Sub Menu Produtos*/
@@ -152,20 +198,30 @@
             /*Menu Relatorios*/
 ###################################################################################################################
             /*Menu Configurações*/
+             if ($_GET['pg']=='aparencia'){
+                include_once('configuracoes/aparencia/aparencia.php');
+              }
+              if ($_GET['pg']=='dados-empresa'){
+                include_once('configuracoes/empresa/dados-empresa.php');
+              }
+              if ($_GET['pg']=='usuarios'){
+                include_once('configuracoes/usuarios/usuarios.php');
+              }
+              if ($_GET['pg']=='novo-usuario'){
+                include_once('configuracoes/usuarios/novo-usuario.php');
+              }
+              if ($_GET['pg']=='altera-usuario'){
+                include_once('configuracoes/usuarios/altera-usuario.php');
+              }
+              if ($_GET['pg']=='detalhes-usuario'){
+                include_once('configuracoes/usuarios/detalhes-usuario.php');
+              }
 ###################################################################################################################            
           }else{
             include_once('home.php');
           }
         ?>
-      </div>
-
-      <footer class="ls-footer" role="contentinfo"> 
-         <div class="ls-footer-info">
-          <span class="last-access ls-ico-screen"><strong>Último acesso: </strong>99/99/9999 99:99:99</span>
-          <div class="set-ip"><strong>IP:</strong> 000.00.00.000</div>
-          <p class="ls-copy-right">Copyright © 1997-2015 Serviços de Internet S/A.</p>
-        </div>
-      </footer>
+      </div>  
      </main>
    
     <aside class="ls-notification">
@@ -185,5 +241,6 @@
     <script src="../javascripts/example.js" type="text/javascript"></script>
     <script src="../javascripts/locastyle.js" type="text/javascript"></script>
     <script src="../javascripts/docs/panel-charts.js" type="text/javascript"></script>
+    <script src="../javascripts/buscas/busca.js" type="text/javascript"></script>
   </body>
 </html>

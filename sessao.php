@@ -7,7 +7,7 @@
 ?>
 
 <?php
-  if(!isset($_SESSION['usuario']) && (!isset($_SESSION['senha']))){
+  if(!isset($_SESSION['login']) && (!isset($_SESSION['senha']))){
     header("Location: login.php");
   }
 ?>
@@ -20,6 +20,6 @@
 ?>
 
 <?php
-  $secao_usuario = $_SESSION['usuario'];
-  $secao_senha = $_SESSION['senha'];
+  $login   = $_SESSION['login'];
+  $senha   = $_SESSION['senha'];
 ?>

@@ -1,5 +1,5 @@
 <h1 class="ls-title-intro ls-ico-users">Clientes</h1>        
-<a href="index.php?pg=novo-cliente" class="ls-btn-primary" title="Cadastrar Cliente">Cadastrar Cliente</a>            
+<a href="index.php?pg=novo-cliente" class="ls-btn-primary ls-ico-user-add" title="Cadastrar Cliente">Cadastrar Cliente</a>            
 <div class="ls-box-filter">
   <form action="" class="ls-form ls-form-inline ls-float-left">
     <label class="ls-label col-md-6 col-sm-8">
@@ -52,7 +52,7 @@
                                                   $status = 'Bloqueado';
                                                 } echo $status; ?></td>
       <td class="ls-txt-right ls-regroup">
-        <a href="index.php?pg=detalhes-cliente?id=<?php echo $listagemCliente['id'];?>" class="ls-btn ls-btn-sm">Detalhes</a>
+        <a href="index.php?pg=detalhes-cliente&id=<?php echo $listagemCliente['id'];?>" class="ls-btn ls-btn-sm">Detalhes</a>
         <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
           <a href="#" class="ls-btn ls-btn-sm"></a>
           <ul class="ls-dropdown-nav">

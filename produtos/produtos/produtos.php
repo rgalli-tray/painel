@@ -38,36 +38,35 @@
   </thead>
   <tbody>
 
-    <?php
-      $sqlListagemProduto    = mysql_query('SELECT * FROM produtos ORDER BY nome');
-      while($listagemProduto = mysql_fetch_array($sqlListagemProduto)) {
-    ?>
+  <?php
+    $sqlListagemProduto    = mysql_query('SELECT * FROM produtos ORDER BY nome');
+    while($listagemProduto = mysql_fetch_array($sqlListagemProduto)) {
+  ?>
 
-      <tr>
-        <td><?php echo $listagemProduto['codigo_1']; ?> / <?php echo $listagemProduto['codigo_2'];?></td>
-        <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['nome']; ?></td>
-        <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['locacao']; ?></td>
-        <td class="ls-txt-center hidden-xs"><?php echo 'R$ '.number_format($listagemProduto['valor_venda'],2, ',', '.'); ?></td>
-        
-        <td class="ls-txt-center hidden-xs"><?php if($listagemProduto['situacao'] == 1) {
-                                                    $status = 'Ativo';
-                                                  }else{
-                                                    $status = 'Bloqueado';
-                                                  } echo $status; ?></td>
-        <td class="ls-txt-right ls-regroup">
-          <a href="index.php?pg=detalhes-produto&?id=<?php echo $listagemProduto['id']; ?>" class="ls-btn ls-btn-sm">Detalhes</a>
-          <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
-            <a href="#" class="ls-btn ls-btn-sm"></a>
-            <ul class="ls-dropdown-nav">
-              <li><a href="index.php?pg=altera-produto&?id=<?php echo $listagemProduto['id']; ?>">Editar</a></li>
-              <li><a href="sql-altera-status-produto.php?id=<?php echo $listagemProduto['id']; ?>">Ativar/Bloquear</a></li>
-              <li><a href="sql-deleta-produto.php?id=<?php echo $listagemProduto['id']; ?>" class="ls-color-danger">Excluir</a></li>
-            </ul>
-          </div>
-        </td>
-      </tr>   
-    <?php
-      }
-    ?>           
-    </tbody>         
- </table>
+  <tr>
+    <td><?php echo $listagemProduto['codigo_1']; ?> / <?php echo $listagemProduto['codigo_2'];?></td>
+    <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['nome']; ?></td>
+    <td class="ls-txt-center hidden-xs"><?php echo $listagemProduto['locacao']; ?></td>
+    <td class="ls-txt-center hidden-xs"><?php echo 'R$ '.number_format($listagemProduto['valor_venda'],2, ',', '.'); ?></td>
+    <td class="ls-txt-center hidden-xs"><?php if($listagemProduto['situacao'] == 1) {
+                                                $status = 'Ativo';
+                                              }else{
+                                                $status = 'Bloqueado';
+                                              } echo $status; ?></td>
+    <td class="ls-txt-right ls-regroup">
+      <a href="index.php?pg=detalhes-produto&id=<?php echo $listagemProduto['id']; ?>" class="ls-btn ls-btn-sm">Detalhes</a>
+      <div data-ls-module="dropdown" class="ls-dropdown ls-pos-right">
+        <a href="#" class="ls-btn ls-btn-sm"></a>
+        <ul class="ls-dropdown-nav">
+          <li><a href="index.php?pg=altera-produto&id=<?php echo $listagemProduto['id']; ?>">Editar</a></li>
+          <li><a href="sql-altera-status-produto.php?id=<?php echo $listagemProduto['id']; ?>">Ativar/Bloquear</a></li>
+          <li><a href="sql-deleta-produto.php?id=<?php echo $listagemProduto['id']; ?>" class="ls-color-danger">Excluir</a></li>
+        </ul>
+      </div>
+    </td>
+  </tr>   
+  <?php
+    }
+  ?>           
+  </tbody>         
+</table>
