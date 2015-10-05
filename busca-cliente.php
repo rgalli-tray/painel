@@ -12,16 +12,17 @@
       echo "<p>Não encontrado</p>";
     }else{
       $nun = mysql_num_rows($executar);
-      	echo '<tr>';
      while($res = mysql_fetch_object($executar)){  
 ?>
+	<tr>
         	<td class="hidden-xs"><?php echo $res->nome;?></td>
         	<td class="hidden-xs"><?php echo $res->apelido;?></td>
         	<td class="hidden-xs">Ativo</td>
         	<td class="hidden-xs">377.964.178.02</td>  
+        </tr>
 
 <?php
 
-        echo '</tr>';
+     }
             
 ?>
