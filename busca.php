@@ -96,9 +96,7 @@
                 <th class="ls-txt-center hidden-xs">Status</th>
               </tr>
             </thead> 
-            <div id="resultado">
-              
-            </div>      
+            <tbody id="resultado"></tbody>
           </table>          
         </div>
       </div>
