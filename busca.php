@@ -108,7 +108,7 @@
     <script src="javascripts/example.js" type="text/javascript"></script>
     <script src="javascripts/locastyle.js" type="text/javascript"></script>
     <script src="javascripts/docs/panel-charts.js" type="text/javascript"></script>
-    <script src="javascripts/buscas/busca-cliente.js" type="text/javascript"></script>
+    <script src="busca.js" type="text/javascript"></script>
   </body>
 </html>
 
